@@ -1,15 +1,15 @@
 {
-    "name": "expandables-js",
-    "version": "1.2.0",
+    "name": "flyout-js",
+    "version": "0.0.0",
     "description": "Plugin for creating and managing collapsible content areas like F.A.Q's and dropdowns",
-    "main": "expandables.js",
+    "main": "flyout.js",
     "scripts": {
         "test": "jest",
         "test-watch": "jest --watch"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/jvuzzell/expandables-js.git"
+        "url": "git+https://github.com/jvuzzell/flyout-js.git"
     },
     "keywords": [
         "dropdown",
@@ -19,9 +19,9 @@
     "author": "Joshua Uzzell <josh.uzzell@gmail.com> (https://uzzell.cc)",
     "license": "SEE LICENSE IN license.txt",
     "bugs": {
-        "url": "https://github.com/jvuzzell/expandables-js/issues"
+        "url": "https://github.com/jvuzzell/flyout-js/issues"
     },
-    "homepage": "https://github.com/jvuzzell/expandables-js#readme",
+    "homepage": "https://github.com/jvuzzell/flyout-js#readme",
     "devDependencies": {
         "@babel/plugin-transform-modules-commonjs": "^7.20.7",
         "@testing-library/dom": "^8.17.1",
