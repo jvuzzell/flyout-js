@@ -1,0 +1,34 @@
+{
+    "name": "expandables-js",
+    "version": "1.2.0",
+    "description": "Plugin for creating and managing collapsible content areas like F.A.Q's and dropdowns",
+    "main": "expandables.js",
+    "scripts": {
+        "test": "jest",
+        "test-watch": "jest --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jvuzzell/expandables-js.git"
+    },
+    "keywords": [
+        "dropdown",
+        "collapse",
+        "expand"
+    ],
+    "author": "Joshua Uzzell <josh.uzzell@gmail.com> (https://uzzell.cc)",
+    "license": "SEE LICENSE IN license.txt",
+    "bugs": {
+        "url": "https://github.com/jvuzzell/expandables-js/issues"
+    },
+    "homepage": "https://github.com/jvuzzell/expandables-js#readme",
+    "devDependencies": {
+        "@babel/plugin-transform-modules-commonjs": "^7.20.7",
+        "@testing-library/dom": "^8.17.1",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/user-event": "^14.4.3",
+        "jest": "^28.1.3",
+        "jest-cli": "^29.3.1",
+        "jest-environment-jsdom": "^29.0.1"
+    }
+}

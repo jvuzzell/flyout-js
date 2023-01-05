@@ -1,0 +1,46 @@
+.flyout-containers {
+    position: fixed; 
+    height: 100%;
+    width: 100%;
+    top: 0; 
+    right: 0;
+    z-index: 3;
+    transform: translateX(0);
+
+}
+
+.flyout-container {
+    position: fixed; 
+    top: 0; 
+    right: 0;
+    height: 100%; 
+    background-color: #fff;
+    padding-top: 30px; 
+    padding-bottom: 30px;
+    width: 100%;
+    max-width: 960px;
+    transform: translateX(0);
+    transition: transform 425ms ease-in-out ;
+    overflow-y: scroll;
+}
+
+body:not([data-flyout="active"]) .flyout-containers, 
+.flyout-container:not([data-flyout-container="expanded"]) {
+    transform: translateX(100%);
+}
+.flyout-container label {
+    line-height: 38px;
+}
+
+.flyout-container button .icon {
+    width: 30px;
+    height: 30px; 
+}
+
+.flyout-container button .icon[src*="ellipsis"] {
+    padding: 4px;
+}
+
+.flyout-container button .icon[src*="times"] {
+    padding: 3px 5px;
+}
