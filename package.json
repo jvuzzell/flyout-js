@@ -1,5 +1,5 @@
 {
-    "name": "overlay-flyout-js",
+    "name": "flyout-overlay-js",
     "version": "0.9.0",
     "description": "Plugin for creating and managing collapsible content areas like additional information screens or tutorials",
     "main": "flyout.js",
