@@ -33,10 +33,6 @@ export let Flyouts = (function() {
         }
 
         publicMethods.toggle = ( event ) => {
-            if( event !== undefined ) {
-                // Check for field to update based on result of Flyout Transaction
-                settings.fieldToUpdate = ( event.target.getAttribute( 'data-target-update-field' ) == undefined ) ? null : event.target.getAttribute( 'data-target-update-field' ); 
-            }
 
             if( settings.container.getAttribute( 'data-flyout-container' ) == 'collapsed' ) {
                 expand( settings.target );
@@ -46,23 +42,16 @@ export let Flyouts = (function() {
 
         }
 
-        publicMethods.getFieldToUpdate = () => {
-            return ( settings.fieldToUpdate == undefined ) ? null : settings.fieldToUpdate;  
-        }
-
         publicMethods.init = ( options ) => {
             
-            settings = options; // This makes arguments available in the scope of other methods within this object
-
-            if( settings == null || settings == undefined ) { console.error( 'Flyout Plugin, settings not provided upon initialization' ); return; } 
-
-            let triggerSelector = settings.triggerSelector; 
-            let triggerCollection = document.querySelectorAll( triggerSelector );            
+            settings = options; // This makes arguments available in the scope of other methods within this object     
 
             if( settings.override === 'true' ) {
 
                 try {    
-                    settings.callback = ( event ) => window[ thisFlyoutSettings.customCallback ]( event );
+                    settings.callback = ( event ) => {
+                        window[ settings.customCallback ]( event );
+                    }; 
                 } catch( error ) {
                     console.error( 'Flyout Plugin, custom callback for Flyout ID: ' + settings.id + '  failed. Message: ' + error.message );
                 }
@@ -73,13 +62,13 @@ export let Flyouts = (function() {
 
             }
 
-            for( let i = 0; i < triggerCollection.length; i++ ) {
-                triggerCollection[ i ].setAttribute( 'data-trigger-id', i );
-                let triggerEvent = triggerCollection[ i ].getAttribute( 'data-flyout-trigger' ); 
-                triggerEvent = ( triggerEvent !== undefined && triggerEvent !== '' ) ? triggerEvent : 'click'; 
-                settings.triggerEvent = triggerEvent;
+            for( let i = 0; i < settings.triggers.length; i++ ) {
 
-                triggerCollection[ i ].addEventListener( triggerEvent, settings.callback );
+                settings.triggers[ i ].setAttribute( 'data-trigger-id', i );
+                let triggerEvent = settings.triggers[ i ].getAttribute( 'data-flyout-trigger' ); 
+                triggerEvent = ( triggerEvent !== undefined && triggerEvent !== '' ) ? triggerEvent : 'click'; 
+                settings.triggers[ i ].addEventListener( triggerEvent, settings.callback );
+                
             }
 
             function transitionEnd( event ) { 
@@ -204,6 +193,7 @@ export let Flyouts = (function() {
                 id               : flyoutName,
                 container        : flyoutTarget, 
                 triggerSelector  : flyoutTriggerSelector, 
+                triggers         : flyoutTriggers,
                 target           : flyoutTarget, 
                 override         : flyoutOverride,
                 customCallback   : flyoutCallback,
@@ -230,11 +220,12 @@ export let Flyouts = (function() {
   
 })();
 
-export const initFlyouts = function() {
+export const initFlyouts = function( flyoutContainer = ".flyout-containers") {
     
-    let flyouts = document.querySelectorAll( '[data-flyout-container]' );
-    if( flyouts == null ) return; 
-
+    const flyoutParentContainer = document.querySelector( flyoutContainer );
+    let flyouts = flyoutParentContainer.querySelectorAll( '[data-flyout-container]' ); 
+    if( flyouts.length === 0 ) { console.warn( 'Flyout plugin not initialized; div.flyout-container not found' ); return; }; 
+ 
     for( var i = 0; i < flyouts.length; i++ ) {
         Flyouts.registerFlyout( flyouts[ i ], i );
     }
