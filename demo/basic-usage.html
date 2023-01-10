@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyout Overlay Test</title>
+    <link rel="stylesheet" href="/flyout-js/flyout.css">
+</head>
+<body>
+
+    <div class="expandable-body">
+        <h2>Flyout Plugin</h2>
+    </div>
+
+    <div>
+        <p>Click this icon to trigger a flyout --> 
+            <button data-flyout-trigger data-flyout-target="exampleFlyoutFoo">
+                <strong>></strong> Open Flyout Foo - Click
+            </button>
+            <button data-flyout-trigger="mouseover" data-flyout-target="exampleFlyoutFoo">
+                <strong>></strong> Open Flyout Foo - Hover
+            </button>
+            <button data-flyout-trigger data-flyout-target="exampleFlyoutBar">
+                <strong>></strong> Open Flyout Bar - Custom Callback
+            </button>
+        </p>
+        <p>The flyout container has two states: "expanded" and "collapsed"</p>                
+    </div>
+        
+
+    <div class="flyout-containers">
+
+        <div class="flyout-container" data-flyout-container="collapsed" data-flyout-target="exampleFlyoutFoo">
+            <h1>Flyout - Foo</h1>
+            <button type="button" data-close-flyout="exampleFlyoutFoo">
+                <strong>&times;</strong> Close
+            </button> 
+            <hr>
+            <button data-flyout-trigger="click" data-flyout-target="exampleFlyoutBar">
+                <strong>></strong> Open Flyout Bar
+            </button>
+        </div>
+
+        <div class="flyout-container" data-flyout-container="collapsed" data-flyout-target="exampleFlyoutBar"  data-flyout-override=true data-flyout-callback="exampleCallback">
+            <h1>Flyout - Bar</h1>
+            <button type="button" data-close-flyout="exampleFlyoutBar">
+                <strong>&times;</strong> Close
+            </button> 
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { Flyouts, initFlyouts } from '/flyout-js/flyout.js';
+        initFlyouts();
+
+        window.exampleCallback = ( event ) => {
+            let targetName = event.target.getAttribute( 'data-flyout-target' ); 
+            Flyouts.getFlyout( targetName ).toggle(); 
+            alert( 'Custom callback triggered on ' + targetName + '; expanded = ' + Flyouts.getFlyout( targetName ).getSettings().expanded );
+        } 
+    </script>
+</body>
+</html>
