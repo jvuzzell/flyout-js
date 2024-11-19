@@ -126,7 +126,7 @@ See [*'/demo/basic-usage.html'*](https://github.com/jvuzzell/flyout-overlay-js/t
 
 <br>
 
-The default event for triggering expandable expansion can be overwritten by adding [data-flyout-override] and [data-flyout-callback] attributes to the expandable trigger. If you a developer does this, they become responsible for toggling the expandable expansion exchange for being able to add custom behavior around the interaction.
+The default event for triggering expandable expansion can be overwritten by adding [data-flyout-override] and [data-flyout-callback] attributes to the expandable trigger. If developers do this, they become responsible for toggling the expandable expansion while adding custom behavior around the interaction.
 
 <br>
 
